@@ -32,15 +32,14 @@ def parse_config():
     parser.add_argument("--batch_size", type=int, default=10, help='adjust based on your GPU Memory')
 
     # testing dataset
-    parser.add_argument("--testset", type=str, default="/mnt/raid0/NIH-TCGA/ImageDatabasePatches2")
-    parser.add_argument("--test_csv", type=str, default="/mnt/raid0/NIH-TCGA/ImageDatabasePatches2/NIH-TCGA_v1.txt")
+    parser.add_argument("--testset", type=str, default="data/TCGA@Focus")
+    parser.add_argument("--test_csv", type=str, default="data/TCGA@Focus.txt")
 
     # checkpoint
     parser.add_argument('--ckpt_path', default="checkpoint/EONSS/EONSS-00001.pt", type=str, help='path to checkpoint')
 
     # utils
     parser.add_argument("--num_workers", type=int, default=4, help="num of threads to load data")
-    parser.add_argument("--enable_stats", type=lambda x: bool(strtobool(x)), default=True, help="plot ROC, PR")
 
     return parser.parse_args()
 

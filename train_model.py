@@ -20,7 +20,6 @@ def parse_config():
     parser = argparse.ArgumentParser()
 
     # basic
-    parser.add_argument("--train", type=lambda x: bool(strtobool(x)), default=True)
     parser.add_argument("--use_cuda", type=lambda x: bool(strtobool(x)), default=True)
     parser.add_argument("--seed", type=int, default=2020)
 
@@ -29,8 +28,8 @@ def parse_config():
     parser.add_argument("--num_channel", type=int, default=1, help='num of channels for the FocusLiteNN model')
 
     # training dataset
-    parser.add_argument("--trainset", type=str, default="/mnt/raid0/Focuspath/data/FocusPath_full/")
-    parser.add_argument("--train_csv", type=str, default="/mnt/raid0/Focuspath/data/MICCAI/train_MICCAI_2020.txt")
+    parser.add_argument("--trainset", type=str, default="data/FocusPath_full/")
+    parser.add_argument("--train_csv", type=str, default="data/FocusPath_full_split1.txt")
 
     # hyperparameters
     parser.add_argument("--batch_size", type=int, default=50)
