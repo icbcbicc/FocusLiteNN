@@ -12,9 +12,9 @@ from PIL import Image
 
 def parse_config():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--arch", type=str, default="FocusLiteNN-1kernel",
-                        help="options: 'FocusLiteNN-1kernel' (ours), 'FocusLiteNN-2kernel' (ours), 'FocusLiteNN-10kernel' (ours),\
-                        'eonss', 'densenet13', 'resnet10', 'resnet50', 'resnet101'")
+    parser.add_argument("--arch", type=str, default="focuslitenn",
+                        help="options: 'focuslitenn, 'eonss', 'densenet13', 'resnet10', 'resnet50', 'resnet101'")
+    parser.add_argument("--num_channel", type=int, default=1, help='num of channels for the FocusLiteNN model')
     parser.add_argument('--img', type=str, default="imgs/TCGA@Focus_patch_i_9651_j_81514.png", help='name of the image')
     parser.add_argument("--heatmap", type=bool, default=False, help='value normalized to [0, 1]')
     parser.add_argument("--save_result", type=bool, default=False)
@@ -44,30 +44,21 @@ class TestingSingle():
         self.use_cuda = torch.cuda.is_available() and self.config.use_cuda
 
         # initialize the model
-        if config.arch.lower() == "focuslitenn-1kernel":
+        if config.arch.lower() == "focuslitenn":
             from model.focuslitenn import FocusLiteNN
-            self.model = FocusLiteNN(num_channel=1)
-        elif config.arch.lower() == "focuslitenn-2kernel":
-            from model.focuslitenn import FocusLiteNN
-            self.model = FocusLiteNN(num_channel=2)
-        elif config.arch.lower() == "focuslitenn-10kernel":
-            from model.focuslitenn import FocusLiteNN
-            self.model = FocusLiteNN(num_channel=10)
+            self.model = FocusLiteNN(num_channel=config.num_channel)
         elif config.arch.lower() == "eonss":
             from model.eonss import EONSS
             self.model = EONSS()
         elif config.arch.lower() in ["densenet13", "densenet"]:
-            from model.densenet import DenseNet
-            self.model = DenseNet(block_config=(1, 1, 1, 1), num_classes=1)
+            self.model = torchvision.models.DenseNet(block_config=(1, 1, 1, 1), num_classes=1)
         elif config.arch.lower() in ["resnet10", "resnet"]:
-            from model.resnet import ResNet, BasicBlock
-            self.model = ResNet(block=BasicBlock, layers=[1, 1, 1, 1], num_classes=1)
+            from torchvision.models.resnet import BasicBlock
+            self.model = torchvision.models.ResNet(block=BasicBlock, layers=[1, 1, 1, 1], num_classes=1)
         elif config.arch.lower() == "resnet50":
-            from model.resnet import resnet50
-            self.model = resnet50(num_classes=1)
+            self.model = torchvision.models.resnet50(num_classes=1)
         elif config.arch.lower() == "resnet101":
-            from model.resnet import resnet101
-            self.model = resnet101(num_classes=1)
+            self.model = torchvision.models.resnet101(num_classes=1)
         else:
             raise NotImplementedError(f"[****] '{config.arch}' is not a valid architecture")
         self.model_name = type(self.model).__name__
@@ -83,7 +74,10 @@ class TestingSingle():
         print("[*] Model %s initialized" % self.model_name)
 
         # load the model
-        config.ckpt = os.path.join("pretrained_model", config.arch.lower() + ".pt")
+        if config.arch.lower() == "focuslitenn":
+            config.ckpt = os.path.join("pretrained_model", f"focuslitenn-{config.num_channel}kernel.pt")
+        else:
+            config.ckpt = os.path.join("pretrained_model", config.arch.lower() + ".pt")
         self._load_checkpoint(config.ckpt)
         print("[*] Checkpoint %s loaded" % config.ckpt)
 

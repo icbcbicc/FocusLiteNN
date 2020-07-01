@@ -10,6 +10,7 @@ import numpy as np
 import scipy.stats
 import torch
 import torch.nn as nn
+import torchvision
 from torch._six import int_classes, string_classes
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
@@ -27,7 +28,7 @@ def parse_config():
     parser.add_argument("--seed", type=int, default=2020)
 
     # CNN architecture
-    parser.add_argument("--arch", type=str, default="EONSS", help='options: FocusLiteNN (ours), EONSS, DenseNet13, ResNet10, ResNet50, ResNet101')
+    parser.add_argument("--arch", type=str, default="FocusLiteNN", help='options: FocusLiteNN (ours), EONSS, DenseNet13, ResNet10, ResNet50, ResNet101')
     parser.add_argument("--num_channel", type=int, default=1, help='num of channels for the FocusLiteNN model')
     parser.add_argument("--batch_size", type=int, default=10, help='adjust based on your GPU Memory')
 
@@ -36,7 +37,7 @@ def parse_config():
     parser.add_argument("--test_csv", type=str, default="data/TCGA@Focus.txt")
 
     # checkpoint
-    parser.add_argument('--ckpt_path', default="checkpoint/EONSS/EONSS-00001.pt", type=str, help='path to checkpoint')
+    parser.add_argument('--ckpt_path', default="pretrained_model/focuslitenn-1kernel.pt", type=str, help='path to checkpoint')
 
     # utils
     parser.add_argument("--num_workers", type=int, default=4, help="num of threads to load data")
@@ -102,17 +103,14 @@ class Tester(object):
             from model.eonss import EONSS
             self.model = EONSS()
         elif config.arch.lower() in ["densenet13", "densenet"]:
-            from model.densenet import DenseNet
-            self.model = DenseNet(block_config=(1, 1, 1, 1), num_classes=1)
+            self.model = torchvision.models.DenseNet(block_config=(1, 1, 1, 1), num_classes=1)
         elif config.arch.lower() in ["resnet10", "resnet"]:
-            from model.resnet import ResNet, BasicBlock
-            self.model = ResNet(block=BasicBlock, layers=[1, 1, 1, 1], num_classes=1)
+            from torchvision.models.resnet import BasicBlock
+            self.model = torchvision.models.ResNet(block=BasicBlock, layers=[1, 1, 1, 1], num_classes=1)
         elif config.arch.lower() == "resnet50":
-            from model.resnet import resnet50
-            self.model = resnet50(num_classes=1)
+            self.model = torchvision.models.resnet50(num_classes=1)
         elif config.arch.lower() == "resnet101":
-            from model.resnet import resnet101
-            self.model = resnet101(num_classes=1)
+            self.model = torchvision.models.resnet101(num_classes=1)
         else:
             raise NotImplementedError(f"[****] '{config.arch}' is not a valid architecture")
         self.model_name = type(self.model).__name__

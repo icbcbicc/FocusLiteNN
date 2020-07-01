@@ -6,6 +6,7 @@ from distutils.util import strtobool
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torchvision
 from torch.autograd import Variable
 from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader
@@ -73,17 +74,14 @@ class Trainer(object):
             from model.eonss import EONSS
             self.model = EONSS()
         elif config.arch.lower() in ["densenet13", "densenet"]:
-            from model.densenet import DenseNet
-            self.model = DenseNet(block_config=(1, 1, 1, 1), num_classes=1)
+            self.model = torchvision.models.DenseNet(block_config=(1, 1, 1, 1), num_classes=1)
         elif config.arch.lower() in ["resnet10", "resnet"]:
-            from model.resnet import ResNet, BasicBlock
-            self.model = ResNet(block=BasicBlock, layers=[1, 1, 1, 1], num_classes=1)
+            from torchvision.models.resnet import BasicBlock
+            self.model = torchvision.models.ResNet(block=BasicBlock, layers=[1, 1, 1, 1], num_classes=1)
         elif config.arch.lower() == "resnet50":
-            from model.resnet import resnet50
-            self.model = resnet50(num_classes=1)
+            self.model = torchvision.models.resnet50(num_classes=1)
         elif config.arch.lower() == "resnet101":
-            from model.resnet import resnet101
-            self.model = resnet101(num_classes=1)
+            self.model = torchvision.models.resnet101(num_classes=1)
         else:
             raise NotImplementedError(f"[****] '{config.arch}' is not a valid architecture")
         self.model_name = type(self.model).__name__
