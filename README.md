@@ -4,14 +4,27 @@ This is the official PyTorch and MATLAB implementations of our MICCAI 2020 paper
 
 ### 1. Brief Introduction
 
-#### 1.1 Model
+#### 1.1 Backgrounds
 
-#### 1.2 Results
+- **Out-of-focus microscopy** lens in digital pathology is a critical bottleneck in high-throughput Whole Slide Image scanning platforms, for which Focus Quality Assessment methods are highly desirable to help significantly accelerate the clinical workflows.
+- While data-driven approaches such as Convolutional Neural Network based methods have shown great promises, they are difficult to use in practice due to their **high computational complexity**.
 
-![results](results.png)
+#### 1.2 Contributions
 
-#### 1.3 Citation
+- We propose a **highly efficient** CNN-based model FocusLiteNN that only has **148 paramters** for Focus Quality Assessment. It maintains impressive performance and is **100x faster** than ResNet50.
+- We introduce a **comprehensive annotated dataset** [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe), which contains 14371 pathological images with in/out focus labels.
 
+#### 1.3 Results
+
+- Evaluation results on the proposed [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe) dataset
+  ![results](results.png)
+
+- Our proposed FocusLiteNN (1-kernel) model is highly efficient.
+  ![time](time.png)
+
+#### 1.4 Citation
+
+```
 @InProceedings{wang2020focuslitenn,
     title={FocusLiteNN: High Efficiency Focus Quality Assessment for Digital Pathology},
     author={Z. Wang and M. Hosseini and A. Miles and Z. Wang and K. Plataniotis},
@@ -19,14 +32,15 @@ This is the official PyTorch and MATLAB implementations of our MICCAI 2020 paper
     year={2020},
     publisher="Springer International Publishing"
 }
+```
 
 ### 2. Dataset
 
 #### 2.1. [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe)
 
-    - **Download**: The dataset is available on Zenodo under a Creative Commons Attribution license: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3910757.svg)](https://doi.org/10.5281/zenodo.3910757).
-    - **Content**: Contains 14371 pathological images with in/out focus labels.
-    - **Testing**: This is the testing dataset proposed and used in the paper. The specific testing images can be found in `data/TCGA@Focus.txt`
+  - **Download**: The dataset is available on Zenodo under a Creative Commons Attribution license: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3910757.svg)](https://doi.org/10.5281/zenodo.3910757).
+  - **Content**: Contains 14371 pathological images with in/out focus labels.
+  - **Testing**: This is the testing dataset proposed and used in the paper. The specific testing images can be found in `data/TCGA@Focus.txt`
 
 #### 2.2 [Focuspath Extended](https://sites.google.com/view/focuspathuoft/home)
 
@@ -38,14 +52,24 @@ This is the official PyTorch and MATLAB implementations of our MICCAI 2020 paper
 
 #### 3.1 Environment
 
-#### 3.2 Pretrained Models
+The code has been tested on `Ubuntu 18.04` with `Python 3.8` and `cuda 10.2`
+
+#### 3.2 Packages
+
+- `pytorch=1.4`
+- `torchvision=0.5`
+- `scipy`
+- `pandas`
+- `pillow` or `pillow-simd`
+
+#### 3.3 Pretrained Models
 
   - Pretrained models could be found in folder `pretrained_model/`
   - Pretrained models for ResNet10, ResNet50 and ResNet101 are available for download at [Download Link](https://drive.google.com/drive/folders/1TuvR7iHzatriHNndClMxMwiKRmxOShWr?usp=sharing). The downloaded models should be put under `pretrained_model/`
 
 ### 4. Running the code
 
-The following are basic usage of the code, for more options, please refer to the code.
+The following are basic usages, for more options, please refer to the code.
 
 #### 4.1 Python Demo for testing a single image (heatmap available)
 
