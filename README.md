@@ -85,6 +85,8 @@ The code has been tested on `Ubuntu 18.04` with `Python 3.8` and `cuda 10.2`
 
 The score should be -1.548026 for `imgs/TCGA@Focus_patch_i_9651_j_81514.png`
 
+The score should be -1.548026 for `imgs/TCGA@Focus_patch_i_9651_j_81514.png`
+
 #### 4.2 MATLAB Demo for testing a single image (non-efficient implementation)
 
 run `matlab/FocusLiteNN-1kernel.m`
