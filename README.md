@@ -28,8 +28,8 @@ Please cite our paper if you find our model or the [TCGA@Focus](https://zenodo.o
 ```
 @InProceedings{wang2020focuslitenn,
     title={FocusLiteNN: High Efficiency Focus Quality Assessment for Digital Pathology},
-    author={Z. Wang and M. Hosseini and A. Miles and Z. Wang and K. Plataniotis},
-    booktitle={Medical Image Computing and Computer Assisted Intervention (MICCAI)},
+    author={Wang, Zhongling and Hosseini, Mahdi and Miles, Adyn and Plataniotis, Konstantinos and Wang, Zhou},
+    booktitle={Medical Image Computing and Computer Assisted Intervention -- MICCAI 2020},
     year={2020},
     publisher="Springer International Publishing"
 }
