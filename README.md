@@ -41,13 +41,14 @@ Please cite our paper if you find our model or the [TCGA@Focus](https://zenodo.o
 
   - **Download**: The dataset is available on Zenodo under a Creative Commons Attribution license: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3910757.svg)](https://doi.org/10.5281/zenodo.3910757).
   - **Content**: Contains **14371** pathological images with in/out focus labels.
-  - **Testing**: This is the testing dataset proposed and used in the paper. The specific testing images (14371 images) can be found in `data/TCGA@Focus.txt`
+  - **Testing**: This is the **testing** dataset proposed and used in the paper. The specific testing images (14371 images) can be found in [`data/TCGA@Focus.txt`](data/TCGA@Focus.txt)
 
-#### 2.2 [Focuspath Full](https://sites.google.com/view/focuspathuoft/home)
+#### 2.2 [Focuspath Full](https://zenodo.org/record/3926181#.Xv4vg3X0kUd)
 
-   - **Download**: [Focuspath Full (8640 images)](TODO), [Focuspath (864 images)](TODO),
+   - **Download**: The dataset is available on Zenodo under a Creative Commons Attribution license: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3926181.svg)](https://doi.org/10.5281/zenodo.3926181)
+
    - **Content**:Contains **8640** pathological images of different blur levels.
-   - **Training**: This is the training dataset used in the paper. The specific training images (5200 images) in one of the ten folds can be found in `data/FocusPath_full_split1.txt`
+   - **Training**: This is the **training** dataset used in the paper. The specific training images (5200 images) in one of the ten folds can be found in [`data/FocusPath_full_split1.txt`](data/FocusPath_full_split1.txt)
 
 ### 3. Prerequest
 
@@ -91,12 +92,16 @@ The score should be -1.548026 for `imgs/TCGA@Focus_patch_i_9651_j_81514.png`
 
 run `matlab/FocusLiteNN-1kernel.m`
 
-#### 4.3 Training FocusLiteNN on [Focuspath_full](https://sites.google.com/view/focuspathuoft/home)
+#### 4.3 Training FocusLiteNN on [Focuspath_full](https://zenodo.org/record/3926181#.Xv4vg3X0kUd)
 
-1.  Download the Focuspath_full dataset and put it under `data/`
-2.  Basic usage: `python train_model.py --use_cuda True --arch FocusLiteNN --num_channel 1 --trainset data/FocusPath_full --train_csv data/FocusPath_full_split1.txt`
+1.  Download and extract the Focuspath Full dataset under `data/`
+2.  Basic usage: `python train_model.py --use_cuda True --arch FocusLiteNN --num_channel 1 --trainset "data/FocusPath Full/FocusPath_full" --train_csv data/FocusPath_full_split1.txt`
 
 #### 4.4 Testing FocusLiteNN on [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe)
 
-1.  Download the TCGA@Focus dataset and put it under `data/`
-2.  Basic usage: `python test_model.py --use_cuda True --arch FocusLiteNN --num_channel 1 --ckpt_path pretrained_model/focuslitenn-1kernel.pt --testset data/TCGA@Focus --test_csv data/TCGA@Focus.txt`
+1.  Download and extract the TCGA@Focus dataset under `data/`
+2.  Basic usage: `python test_model.py --use_cuda True --arch FocusLiteNN --num_channel 1 --ckpt_path pretrained_model/focuslitenn-1kernel.pt --testset "data/TCGA@Focus/Image Patches Database" --test_csv data/TCGA@Focus.txt`
+
+### 5. License
+
+FocusLiteNN is released under [The Prosperity Public License 3.0.0](LICENSE).
