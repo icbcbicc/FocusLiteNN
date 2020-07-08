@@ -3,27 +3,27 @@
 This is the official **PyTorch** and **MATLAB** implementations of our MICCAI 2020 paper [*"FocusLiteNN: High Efficiency Focus Quality Assessment for Digital Pathology"*](TODO).
 
 
-### 0. Table of Contents
-- [FocusLiteNN](#focuslitenn)
-  - [0. Table of Contents](#0-table-of-contents)
-  - [1. Brief Introduction](#1-brief-introduction)
-    - [1.1 Backgrounds](#11-backgrounds)
-    - [1.2 Contributions](#12-contributions)
-    - [1.3 Results](#13-results)
-    - [1.4 Citation](#14-citation)
-  - [2. Dataset](#2-dataset)
-    - [2.1 TCGA@Focus](#21-tcgafocus)
-    - [2.2 Focuspath Full](#22-focuspath-full)
-  - [3. Prerequest](#3-prerequest)
-    - [3.1 Environment](#31-environment)
-    - [3.2 Packages](#32-packages)
-    - [3.3 Pretrained Models](#33-pretrained-models)
-  - [4. Running the code](#4-running-the-code)
-    - [4.1 Python Demo for testing a single image (heatmap available)](#41-python-demo-for-testing-a-single-image-heatmap-available)
-    - [4.2 MATLAB Demo for testing a single image (non-efficient implementation)](#42-matlab-demo-for-testing-a-single-image-non-efficient-implementation)
-    - [4.3 Training FocusLiteNN on Focuspath_full](#43-training-focuslitenn-on-focuspath_full)
-    - [4.4 Testing FocusLiteNN on TCGA@Focus](#44-testing-focuslitenn-on-tcgafocus)
-  - [5. License](#5-license)
+- [1. Brief Introduction](#1-brief-introduction)
+  * [1.1 Backgrounds](#11-backgrounds)
+  * [1.2 Contributions](#12-contributions)
+  * [1.3 Results](#13-results)
+  * [1.4 Citation](#14-citation)
+- [2. Dataset](#2-dataset)
+  * [2.1 [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe)](#21--tcga-focus--https---zenodoorg-record-3910757-xve1mxx0kue-)
+  * [2.2 [Focuspath Full](https://zenodo.org/record/3926181#.Xv4vg3X0kUd)](#22--focuspath-full--https---zenodoorg-record-3926181-xv4vg3x0kud-)
+- [3. Prerequest](#3-prerequest)
+  * [3.1 Environment](#31-environment)
+  * [3.2 Packages](#32-packages)
+  * [3.3 Pretrained Models](#33-pretrained-models)
+- [4. Running the code](#4-running-the-code)
+  * [4.1 Python Demo for testing a single image (heatmap available)](#41-python-demo-for-testing-a-single-image--heatmap-available-)
+  * [4.2 MATLAB Demo for testing a single image (non-efficient implementation)](#42-matlab-demo-for-testing-a-single-image--non-efficient-implementation-)
+  * [4.3 Training FocusLiteNN on [Focuspath_full](https://zenodo.org/record/3926181#.Xv4vg3X0kUd)](#43-training-focuslitenn-on--focuspath-full--https---zenodoorg-record-3926181-xv4vg3x0kud-)
+  * [4.4 Testing FocusLiteNN on [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe)](#44-testing-focuslitenn-on--tcga-focus--https---zenodoorg-record-3910757-xve1mxx0kue-)
+- [5. License](#5-license)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ### 1. Brief Introduction
 
