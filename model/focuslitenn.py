@@ -6,6 +6,16 @@ import torch.nn.functional as F
 
 
 class FocusLiteNN(nn.Module):
+    """
+    In practice, we found MIN contributes VERY LITTLE to the performance. To achieve
+    extreme simplicity, different from Equation 1 in the paper, we only use MAX as the
+    nonlinear function. All experimental results in the paper are reported based on the
+    model using only MAX.
+
+    The model (class FocusLiteNNMinMax) using weighted MAX and MIN as the nonlinear function
+    (Equation 1 in paper) has indistinguishable (slightly better) performance compared to the
+    model using only MAX (class FocusLiteNN).
+    """
     def __init__(self, num_channel=1):
         super(FocusLiteNN, self).__init__()
         self.num_channel = num_channel
@@ -32,6 +42,11 @@ class FocusLiteNN(nn.Module):
 
 
 class FocusLiteNNMinMax(nn.Module):
+    """
+    The model using weighted MAX and MIN as the nonlinear function (Equation 1 in paper),
+    which has indistinguishable (slightly better) performance compared to the model using
+    only MAX (class FocusLiteNN).
+    """
     def __init__(self, num_channel=1):
         super(FocusLiteNNMinMax, self).__init__()
         self.num_channel = num_channel
