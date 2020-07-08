@@ -38,10 +38,10 @@ This is the official **PyTorch** and **MATLAB** implementations of our MICCAI 20
 #### 1.3 Results
 
 - Evaluation results on the proposed [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe) dataset
-  ![results](results.png)
+  ![results](imgs/results.png)
 
 - Our proposed FocusLiteNN (1-kernel) model is highly efficient.
-  ![time](time.png)
+  ![time](imgs/time.png)
 
 #### 1.4 Citation
 
