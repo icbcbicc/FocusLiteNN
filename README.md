@@ -1,6 +1,6 @@
 ## FocusLiteNN
 
-This is the official **PyTorch** and **MATLAB** implementations of our MICCAI 2020 paper [*"FocusLiteNN: High Efficiency Focus Quality Assessment for Digital Pathology"*](TODO).
+This is the official **PyTorch** and **MATLAB** implementations of our MICCAI 2020 paper [*"FocusLiteNN: High Efficiency Focus Quality Assessment for Digital Pathology"*](https://arxiv.org/abs/2007.06565).
 
 
 - [1. Brief Introduction](#1-brief-introduction)
