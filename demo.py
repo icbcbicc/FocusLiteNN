@@ -130,10 +130,15 @@ class TestingSingle():
             cax1 = divider.append_axes("right", size="5%", pad=0.05)
             cbar = fig.colorbar(im, cax=cax1)
             cbar.ax.tick_params(labelsize=12)
-            plt.savefig("release/heatmap_" + self.config.arch + ".jpg", bbox_inches='tight', dpi='figure', quality=70)
+            if not os.path.exists("heatmap"):
+                os.mkdir("heatmap")
+            if self.config.arch.lower() == "focuslitenn":
+                heatmap_name = f"heatmap/heatmap_{self.config.arch}_{self.config.num_channel}kernel.png"
+            else:
+                heatmap_name = f"heatmap/heatmap_{self.config.arch}.png"
+            plt.savefig(heatmap_name, bbox_inches='tight', dpi='figure', quality=70)
 
         else:
-
             score_predict = self.model(image_patches).cpu().data
             score_predict = torch.squeeze(score_predict, dim=1).numpy()
             score_predict_mean = np.mean(score_predict)
