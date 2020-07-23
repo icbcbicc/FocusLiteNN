@@ -9,17 +9,17 @@ This is the official **PyTorch** and **MATLAB** implementations of our MICCAI 20
   * [1.3 Results](#13-results)
   * [1.4 Citation](#14-citation)
 - [2. Dataset](#2-dataset)
-  * [2.1 [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe)]
-  * [2.2 [Focuspath Full](https://zenodo.org/record/3926181#.Xv4vg3X0kUd)]
+  * [2.1 TCGA@Focus](#21-tcgafocus)
+  * [2.2 Focuspath Full](#22-focuspath-full)
 - [3. Prerequest](#3-prerequest)
   * [3.1 Environment](#31-environment)
   * [3.2 Packages](#32-packages)
   * [3.3 Pretrained Models](#33-pretrained-models)
 - [4. Running the code](#4-running-the-code)
-  * [4.1 Python Demo for testing a single image (heatmap available)](#41-python-demo-for-testing-a-single-image--heatmap-available-)
-  * [4.2 MATLAB Demo for testing a single image (non-efficient implementation)](#42-matlab-demo-for-testing-a-single-image--non-efficient-implementation-)
-  * [4.3 Training FocusLiteNN on [Focuspath_full](https://zenodo.org/record/3926181#.Xv4vg3X0kUd)]
-  * [4.4 Testing FocusLiteNN on [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe)]
+  * [4.1 Python Demo for testing a single image](#41-python-demo-for-testing-a-single-image-heatmap-available)
+  * [4.2 MATLAB Demo for testing a single image](#42-matlab-demo-for-testing-a-single-image-non-efficient-implementation)
+  * [4.3 Training on **Focuspath_full**](#43-training-focuslitenn-on-focuspath_full)
+  * [4.4 Testing on **TCGA@Focus**](#44-testing-focuslitenn-on-tcgafocus)
 - [5. License](#5-license)
 
 
@@ -105,9 +105,9 @@ The code has been tested on `Ubuntu 18.04` with `Python 3.8` and `cuda 10.2`
 
 `python demo.py --arch FocusLiteNN --num_channel 1 --img imgs/TCGA@Focus_patch_i_9651_j_81514.png`
 
-The score should be -1.548026 for `imgs/TCGA@Focus_patch_i_9651_j_81514.png`
+- The score should be -1.548026 for `imgs/TCGA@Focus_patch_i_9651_j_81514.png`
 
-The score should be -1.548026 for `imgs/TCGA@Focus_patch_i_9651_j_81514.png`
+- To enable heatmap (normalized), add `--heatmap True` to the command.
 
 #### 4.2 MATLAB Demo for testing a single image (non-efficient implementation)
 
