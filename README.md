@@ -20,7 +20,8 @@ This is the official **PyTorch** and **MATLAB** implementations of our MICCAI 20
   * [4.2 MATLAB Demo for testing a single image](#42-matlab-demo-for-testing-a-single-image-non-efficient-implementation)
   * [4.3 Training on **Focuspath_full**](#43-training-focuslitenn-on-focuspath_full)
   * [4.4 Testing on **TCGA@Focus**](#44-testing-focuslitenn-on-tcgafocus)
-- [5. License](#5-license)
+- [5. Codes for comparing models](#5-codes-for-comparing-models)
+- [6. License](#6-license)
 
 
 ### 1. Brief Introduction
@@ -123,6 +124,18 @@ run `matlab/FocusLiteNN-1kernel.m`
 1.  Download and extract the TCGA@Focus dataset under `data/`
 2.  Basic usage: `python test_model.py --use_cuda True --arch FocusLiteNN --num_channel 1 --ckpt_path pretrained_model/focuslitenn-1kernel.pt --testset "data/TCGA@Focus/Image Patches Database" --test_csv data/TCGA@Focus.txt`
 
-### 5. License
+### 5. Codes for comparing models
+
+For other model compared in the paper, you can find the code in
+
+1. FQPath: https://github.com/mahdihosseini/FQPath
+2. HVS-MaxPol: https://github.com/mahdihosseini/HVS-MaxPol
+3. Synthetic-MaxPol: https://github.com/mahdihosseini/Synthetic-MaxPol
+4. LPC-SI: https://ece.uwaterloo.ca/~z70wang/research/lpcsi/
+5. GPC: http://helios.mi.parisdescartes.fr/~moisan/sharpness/
+6. MLV: https://www.mathworks.com/matlabcentral/fileexchange/49991-maximum-local-variation-mlv-code-for-sharpness-assessment-of-images
+7. SPARISH: https://www.mathworks.com/matlabcentral/fileexchange/55106-sparish
+
+### 6. License
 
 FocusLiteNN is released under [The Prosperity Public License 3.0.0](LICENSE).
