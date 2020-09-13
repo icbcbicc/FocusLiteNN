@@ -1,12 +1,11 @@
-disp("This Matlab version is only for the purpose of exactly reproducing the results of the PyTorch version,
-such that the efficiency of this Matlab code is not taken into condiseration.")
+disp("This Matlab version is only for the purpose of exactly reproducing the results of the PyTorch version, such that the efficiency of this Matlab code is not taken into condiseration.")
 
 clear;
 clc;
 
 load("matlab/FocusLiteNN1channel.mat");
 
-im_name = "imgs/TCGA@Focus_patch_i_9651_j_81514.png";
+im_name = "../imgs/TCGA@Focus_patch_i_9651_j_81514.png";
 im = im2double(imread(im_name));
 
 patches = denseSample(im, 235, 128, 0);
