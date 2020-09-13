@@ -62,14 +62,14 @@ Please cite our paper if you find our model or the [TCGA@Focus](https://zenodo.o
 #### 2.1 [TCGA@Focus](https://zenodo.org/record/3910757#.Xve1MXX0kUe)
 
   - **Download**: The dataset is available on Zenodo under a Creative Commons Attribution license: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3910757.svg)](https://doi.org/10.5281/zenodo.3910757).
-  - **Content**: Contains **14371** pathological images with in/out focus labels.
+  - **Content**: Contains **14371** pathological image patches of size 1024x1024 with in/out focus labels.
   - **Testing**: This is the **testing** dataset proposed and used in the paper. The specific testing images (14371 images) can be found in [`data/TCGA@Focus.txt`](data/TCGA@Focus.txt)
 
 #### 2.2 [Focuspath Full](https://zenodo.org/record/3926181#.Xv4vg3X0kUd)
 
    - **Download**: The dataset is available on Zenodo under a Creative Commons Attribution license: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3926181.svg)](https://doi.org/10.5281/zenodo.3926181)
 
-   - **Content**:Contains **8640** pathological images of different blur levels.
+   - **Content**:Contains **8640** pathological image patches of size 1024x1024 of different microscopic blur levels i.e. 14 z-levels (in-depth).
    - **Training**: This is the **training** dataset used in the paper. The specific training images (5200 images) in one of the ten folds can be found in [`data/FocusPath_full_split1.txt`](data/FocusPath_full_split1.txt)
 
 ### 3. Prerequest
