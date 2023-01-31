@@ -38,6 +38,7 @@ def parse_config():
     parser.add_argument("--initial_lr", type=float, default=1e-2)
     parser.add_argument("--decay_interval", type=int, default=60)
     parser.add_argument("--decay_ratio", type=float, default=0.1)
+    parser.add_argument("--loss_type", type=str, default="plcc", choices=["plcc", "mse", "mae"])
 
     # utils
     parser.add_argument("--num_workers", type=int, default=4, help='num of threads to load data')
@@ -96,9 +97,18 @@ class Trainer(object):
             self.model.cuda()
 
         # loss function
-        self.crit_plcc = PLCCLoss()
+        self.loss_type = config.loss_type.lower()
+        if self.loss_type == "plcc":
+            self.crit_loss = PLCCLoss()
+        elif self.loss_type == "mse":
+            self.crit_loss = nn.MSELoss(reduction="mean")
+        elif self.loss_type == "mae":
+            self.crit_loss = nn.L1Loss(reduction="mean")
+        else:
+            raise NotImplementedError(f"[*] '{self.loss_type}' is not a valid loss type")
+
         if self.use_cuda:
-            self.crit_plcc = self.crit_plcc.cuda()
+            self.crit_loss = self.crit_loss.cuda()
 
         # optimizer
         self.optimizer = optim.Adam(self.model.parameters(), lr=config.initial_lr)
@@ -142,8 +152,10 @@ class Trainer(object):
 
             batch_size = int(q.nelement() / 1)
             q_avg = q.view(batch_size, 1).mean(1)  # shape: (batch_size)
-
-            self.loss = -1 * self.crit_plcc(q_avg, score)
+            
+            self.loss = self.crit_loss(q_avg, score)
+            if self.loss_type == "plcc":
+                self.loss = -1 * self.loss
 
             self.loss.backward()
             self.optimizer.step()
