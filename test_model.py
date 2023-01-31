@@ -11,7 +11,6 @@ import scipy.stats
 import torch
 import torch.nn as nn
 import torchvision
-from torch._six import int_classes, string_classes
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from torch.utils.data.dataloader import default_collate
@@ -165,11 +164,11 @@ class Tester(object):
             if elem.shape == ():  # scalars
                 py_type = float if elem.dtype.name.startswith('float') else int
                 return numpy_type_map[elem.dtype.name](list(map(py_type, batch)))
-        elif isinstance(batch[0], int_classes):
+        elif isinstance(batch[0], int):
             return torch.LongTensor(batch)
         elif isinstance(batch[0], float):
             return torch.DoubleTensor(batch)
-        elif isinstance(batch[0], string_classes):
+        elif isinstance(batch[0], str):
             return batch
         elif isinstance(batch[0], collections.Mapping):
             # return {key: dim1_collate([d[key] for d in batch]) for key in batch[0]}
