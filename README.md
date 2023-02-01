@@ -23,6 +23,10 @@ This is the official **PyTorch** and **MATLAB** implementations of our MICCAI 20
 - [5. Codes for comparing models](#5-codes-for-comparing-models)
 - [6. License](#6-license)
 
+
+**[Update Feb. 1, 2023]**
+An online demo can be founed at [CODIDO](https://www.codido.co/marketplace/browse2?ecr_repo=gAAAAABj2sqyCrxcrHosuKPPC-HAuQTf-puIHz8IeXBqxGliX_lTsn3puU7XJxSdKzLq-cf7XK9zFJt-m0yfXBbecHWEQibYZGfun5UpAQH_466Ej4W_eC1HC20XTBeDS8zcGxL7rk4T). You can easily try our model with a few mouse clicks. These demo models are trained using the MSE loss.
+
 **[Update Jan. 31, 2023]**
 The original loss used for training all models in the paper is PLCC, which doesn't produce absolute scale scores. This update features three FocusLiteNN (1-kernel, 2-kernel, 10-kernel) models trained with the **MSE loss** using the entire FocusPath dataset, which produce **absolute scale scores**. This is beneficial for **single image testing** and **heatmap visualization**. The pre-trained models are located at `pretrained_model/focuslitenn-{1,2,10}kernel-mse.pt`.
 
