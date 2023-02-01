@@ -186,9 +186,10 @@ class Trainer(object):
         if (epoch + 1) % self.epochs_per_save == 0:
             model_name = '{}-{:0>5d}.pt'.format(self.model_name, epoch)
             model_name = os.path.join(self.ckpt_path, model_name)
-            self._save_checkpoint({
-                'state_dict': self.model.state_dict()
-            }, model_name)
+            if hasattr(self.model, 'module'):
+                self._save_checkpoint({'state_dict': self.model.module.state_dict()}, model_name)
+            else:
+                self._save_checkpoint({'state_dict': self.model.state_dict()}, model_name)
 
     # save checkpoint
     @staticmethod
