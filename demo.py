@@ -27,8 +27,8 @@ def get_patches(image, output_size, stride):
     new_h, new_w = output_size, output_size
     stride_h, stride_w = stride, stride
 
-    h_start = np.arange(0, h - new_h, stride_h)
-    w_start = np.arange(0, w - new_w, stride_w)
+    h_start = np.arange(0, h - new_h + 1, stride_h)
+    w_start = np.arange(0, w - new_w + 1, stride_w)
 
     patches = [image.crop((wv_s, hv_s, wv_s + new_w, hv_s + new_h)) for hv_s in h_start for wv_s in w_start]
 
