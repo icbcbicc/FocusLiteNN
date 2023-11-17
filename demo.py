@@ -19,6 +19,7 @@ def parse_config():
     parser.add_argument("--heatmap", type=bool, default=False, help='value normalized to [0, 1]')
     parser.add_argument("--save_result", type=bool, default=False)
     parser.add_argument("--use_cuda", type=bool, default=False)
+    parser.add_argument("--loss_type", type=str, default="plcc", choices=["plcc", "mse"])
     return parser.parse_args()
 
 
@@ -75,7 +76,12 @@ class TestingSingle():
 
         # load the model
         if config.arch.lower() == "focuslitenn":
-            config.ckpt = os.path.join("pretrained_model", f"focuslitenn-{config.num_channel}kernel.pt")
+            if self.config.loss_type == "plcc":
+                config.ckpt = os.path.join("pretrained_model", f"focuslitenn-{config.num_channel}kernel.pt")
+            elif self.config.loss_type == "mse":
+                config.ckpt = os.path.join("pretrained_model", f"focuslitenn-{config.num_channel}kernel-mse.pt")
+            else:
+                raise NotImplementedError(f"[*] '{config.loss_type}' is not a valid loss type")
         else:
             config.ckpt = os.path.join("pretrained_model", config.arch.lower() + ".pt")
         self._load_checkpoint(config.ckpt)
@@ -116,15 +122,19 @@ class TestingSingle():
             heatmap = heatmap.reshape([new_h, new_w])
 
             # normalize
-            heatmap -= heatmap.min()
-            heatmap /= heatmap.max()
+            if self.config.loss_type == "plcc":
+                heatmap -= heatmap.min()
+                heatmap /= heatmap.max()
 
             # interpolate
             heatmap_interpolated = resize(heatmap, (original_h, original_w))
 
             fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6, 6), dpi=200)
             ax.imshow(original_image, cmap='gray')
-            im = ax.imshow(heatmap_interpolated, cmap='jet', alpha=0.2, vmin=0.0, vmax=1.0)
+            if self.config.loss_type == "plcc":
+                im = ax.imshow(heatmap_interpolated, cmap='jet', alpha=0.2, vmin=0.0, vmax=1.0)
+            else:
+                im = ax.imshow(heatmap_interpolated, cmap='jet', alpha=0.2, vmin=0.0, vmax=12.0)
             ax.axis('off')
             divider = make_axes_locatable(ax)
             cax1 = divider.append_axes("right", size="5%", pad=0.05)
@@ -142,6 +152,9 @@ class TestingSingle():
             score_predict = self.model(image_patches).cpu().data
             score_predict = torch.squeeze(score_predict, dim=1).numpy()
             score_predict_mean = np.mean(score_predict)
+
+        if self.config.loss_type == "mse":
+            score_predict_mean = max(0, score_predict_mean)
 
         t2 = time.time()
 
